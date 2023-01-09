@@ -1,11 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import EventService from '../services/EventService';
+import EventService from '../services/EventService'
 
+const props = defineProps({
+  id: { required: true },
+})
 const event = ref(null)
-const id = ref(5928101)
 const loadData = async () => {
-  const request = await EventService.getEvent(id.value)
+  const request = await EventService.getEvent(props.id)
   event.value = request.data
 }
 onMounted(() => {
