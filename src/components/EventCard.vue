@@ -1,5 +1,5 @@
 <script setup>
-import EventCreate from "./EventCreate.vue"
+import EventCreate from '../views/EventCreateView.vue'
 defineProps({
   event: {
     type: Object,
@@ -15,7 +15,6 @@ defineProps({
     class="event-link"
   >
     <div class="event-card">
-      <EventCreate />
       <h2>{{ event.title }}</h2>
       <span>@{{ event.time }} on {{ event.date }}</span>
     </div>

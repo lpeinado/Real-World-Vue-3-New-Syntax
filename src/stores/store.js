@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-
+import EventService from '../services/EventService'
 // Create a new store instance.
 const store = createStore({
   state() {
@@ -13,11 +13,21 @@ const store = createStore({
         { id: 4, name: 'Nature science', done: false },
         { id: 5, name: 'Programming', done: true },
       ],
+      events: [],
     }
   },
   mutations: {
     increment(state) {
       state.count++
+    },
+    ADD_EVENT(state, event) {
+      state.events.push(event)
+    },
+  },
+  actions: {
+    createEvent({ commit }, event) {
+      EventService.postEvent(event)
+      commit('ADD_EVENT', event)
     },
   },
   getters: {
