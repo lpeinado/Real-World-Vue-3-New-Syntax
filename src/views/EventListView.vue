@@ -1,14 +1,11 @@
 <script setup>
 import EventCard from '../components/EventCard.vue'
-import { ref, onMounted } from 'vue'
-import EventService from '../services/EventService.js'
-const events = ref(null)
-const loadData = async () => {
-  const data = await EventService.getEvents()
-  events.value = data.data
-}
+import { onMounted, computed } from 'vue'
+import { store } from '../stores/store.js'
+const events = computed(() => store.state.events)
+
 onMounted(() => {
-  loadData()
+  store.dispatch('fetchEvents')
 })
 </script>
 

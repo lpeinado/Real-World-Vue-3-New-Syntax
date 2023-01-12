@@ -23,11 +23,19 @@ const store = createStore({
     ADD_EVENT(state, event) {
       state.events.push(event)
     },
+    LOAD_EVENTS(state, events) {
+      state.events = events
+    },
   },
   actions: {
     createEvent({ commit }, event) {
       EventService.postEvent(event)
       commit('ADD_EVENT', event)
+    },
+    fetchEvents({ commit }) {
+      EventService.getEvents().then((response) =>
+        commit('LOAD_EVENTS', response.data)
+      )
     },
   },
   getters: {
